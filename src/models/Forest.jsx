@@ -86,7 +86,7 @@ const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurre
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-      // Set the current stage based on the island's orientation
+      // Set the current stage based on the forest orientation
       switch (true) {
         case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
           setCurrentStage(4);

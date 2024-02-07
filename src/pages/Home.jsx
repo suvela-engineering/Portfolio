@@ -35,7 +35,7 @@ const Home = () => {
 
         else {
             screenScale = [5, 5, 5];
-            screenPosition = [1, 1, 11];
+            screenPosition = [0,-10, -10];
         }
 
         // position={[2,-3,-1]} scale={[1,1,1]}
@@ -79,10 +79,10 @@ const Home = () => {
                         setCurrentStage={setCurrentStage}
                     />
                     <Fox_Simple
+                        scale={foxSimpleScale}
+                        position={foxSimplePosition}
+                        rotation={[0,80,0]}
                         isRotating={isRotating}
-                        foxSimpleScale={foxSimpleScale}
-                        foxSimplePosition={foxSimplePosition}
-                        rotation={[0,-90,0]}
                     />
                 </Suspense>
             </Canvas>
