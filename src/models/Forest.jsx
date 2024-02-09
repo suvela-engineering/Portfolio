@@ -12,17 +12,14 @@ import { useGLTF } from "@react-three/drei"; //useAnimations
 import { useThree, useFrame } from "@react-three/fiber";
 import {a} from '@react-spring/three';
 
-import ForestScene from '../assets/3D/forest_camping.glb';
+import ForestScene from '../assets/3D/forest_camping.glba';
 import Wolf from "./Wolf";
 
 const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurrentStage }) => {
   const forestRef = useRef();
-  // const wolfRef = useRef();
 
   const {gl, viewport} = useThree();
   const { scene, animations,  } = useGLTF(ForestScene);
-
-  // const { actions } = useAnimations(animations, group);
 
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
@@ -88,6 +85,16 @@ const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurre
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
+
+      // Apply offsets to wolf
+      wolfRef.current.position.x = forestRef.current.position.x + wolfPositionOffset.x;
+      wolfRef.current.position.y = forestRef.current.position.y + wolfPositionOffset.y;
+      wolfRef.current.position.z = forestRef.current.position.z + wolfPositionOffset.z;
+
+      wolfRef.current.rotation.x = forestRef.current.rotation.x + wolfRotationOffset.x;
+      wolfRef.current.rotation.y = forestRef.current.rotation.y + wolfRotationOffset.y;
+      wolfRef.current.rotation.z = forestRef.current.rotation.z + wolfRotationOffset.z;
+
       // Set the current stage based on the forest orientation
       switch (true) {
         // case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
@@ -107,22 +114,6 @@ const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurre
           setCurrentStage(null);
       }
     }
-
-    // if (wolfRef.current) {
-    //   const islandPosition = forestRef.current.position;
-    //   const islandRotation = forestRef.current.rotation;
-
-    //   // Calculate wolf position relative to island position
-    //   const wolfPosition = [
-    //     islandPosition.x + 0, // Adjust X-offset as needed
-    //     islandPosition.y + 3, // Adjust Y-offset as needed
-    //     islandPosition.z + 0, // Adjust Z-offset as needed
-    //   ];
-
-    //   // Set wolf position and rotation, preserving its initial orientation
-    //   wolfRef.current.position.set(wolfPosition);
-    //   // wolfRef.current.rotation.set(wolfInitialRotation); // Store initial rotation in a variable
-    // }
   });
 
   useEffect(() => {
@@ -156,20 +147,14 @@ const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurre
   //   );  
   // };
 
+    // Compute Wolf position and rotation based on Forest properties
+  const wolfPosition = [position.x + 1, position.y + 3, position.z];
+  const wolfRotation = [rotation.x, rotation.y + Math.PI, rotation.z];
+
 
   return (
     <mesh ref={forestRef} scale={scale} position={position} rotation={rotation}>
       <primitive object={scene} />
-      {/* {forestRef.current && (
-        <Wolf
-          scale={[5, 5,5]}
-          position={[2, 5, -20]}
-          // position={[forestRef.current.position.x + 0, forestRef.current.position.y + 3, forestRef.current.position.z + 0]}
-          rotation={[0, 80, 0]}
-          
-          // wolfRef={wolfRef} // Forward the ref
-        /> */}
-      {/* )} */}
     </mesh>
   );
 }
