@@ -138,20 +138,6 @@ const Forest = ({ position, rotation, scale, isRotating, setIsRotating, setCurre
     };
   }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
-  // const Wolf = ({ scale, position, rotation, ref }) => {
-  //   // Use the received props instead of hardcoded values
-  //   return (
-  //     <mesh scale={scale} position={position} rotation={rotation} ref={ref}>
-  //       <primitive object={scene} />
-  //     </mesh>
-  //   );  
-  // };
-
-    // Compute Wolf position and rotation based on Forest properties
-  const wolfPosition = [position.x + 1, position.y + 3, position.z];
-  const wolfRotation = [rotation.x, rotation.y + Math.PI, rotation.z];
-
-
   return (
     <mesh ref={forestRef} scale={scale} position={position} rotation={rotation}>
       <primitive object={scene} />
