@@ -11,15 +11,11 @@ export default function PlaneOrange({ setCurrentStage,setIsClick,isClick,isAnima
     // Get animation actions associated with the plane
     const { actions } = useAnimations(animations, planeRef);
 
-    // Use an effect to control the plane's animation based on 'isRotating'
-    // Note: Animation names can be found on the Sketchfab website where the 3D model is hosted.
+    // console.log("setCurrentStage: " +setCurrentStage);
+    // console.log("isAnimating: " +isAnimating);
+    // console.log("...props: " +JSON.stringify(props));
 
-    console.log("setCurrentStage: " +setCurrentStage);
-    // console.log("setIsRotating: " +setIsRotating);
-    console.log("isAnimating: " +isAnimating);
-    console.log("...props: " +JSON.stringify(props));
-
-
+    // for rotation
     const {gl, viewport} = useThree();  
     const lastX = useRef(0);
     const rotationSpeed = useRef(0);

@@ -4,6 +4,7 @@ import Loader from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
 import PlaneOrange from '../models/Plane';
 import Sky from '../models/Sky';
+import SmallDragon from '../models/SmallDragon';
 
 {/* <div className='absolute top-28 left-0 right-0 flex justify-center items-center'>
     Pop-up
@@ -30,7 +31,15 @@ const Home = () => {
         return [screenScale, screenPosition, screenRotation];
     }
 
-    const [planeScale, planeposition, planeRotation] = adjustPlaneForScreenSize();
+    const adjustSmallDragonForScreenSize = () => {
+        let screenScale = [2, 2, 2];;
+        let screenPosition = [-400, 50, -200]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
+        let screenRotation = [3.3, 5.5, 2.8];
+        return [screenScale, screenPosition, screenRotation];
+    }
+
+    const [planeScale, planePosition, planeRotation] = adjustPlaneForScreenSize();
+    const [smallDragonScale, smallDragonPosition, smallDragonRotation] = adjustSmallDragonForScreenSize();
 
     return (
         <section className='w-full h-screen relative'>
@@ -45,8 +54,8 @@ const Home = () => {
                 camera={{ near: 0.1, far: 1000 }}
             >
                 <Suspense fallback={<Loader />}>
-                    <directionalLight position={[1, 1, 1]} intensity={0} />
-                    <ambientLight intensity={0} />
+                    <directionalLight position={[1, 1, 1]} intensity={1} />
+                    <ambientLight intensity={1} />
                     <hemisphereLight skyColor="#87d3ff" groundColor="#000000"
                         intensity={0} />
 
@@ -62,13 +71,19 @@ const Home = () => {
                         setCurrentStage={setCurrentStage}
                     />
                     <PlaneOrange
-                        position={planeposition}
+                        position={planePosition}
                         rotation={planeRotation}//[0.1, 4.7077, 0]}workBenchScale
                         scale={planeScale}
                         isAnimating={true}
                         isClick={isClick}
                         setIsClick={setIsClick}
                         setCurrentStage={setCurrentStage}
+                    />
+                    <SmallDragon
+                        position={smallDragonPosition}
+                        rotation={smallDragonRotation}//[0.1, 4.7077, 0]}workBenchScale
+                        scale={smallDragonScale}
+                        isAnimating={true}
                     />
                     {/* <Forest
                         position={forestPosition}
