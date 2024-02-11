@@ -5,6 +5,7 @@ import HomeInfo from '../components/HomeInfo';
 import PlaneOrange from '../models/Plane';
 import Sky from '../models/Sky';
 import SmallDragon from '../models/SmallDragon';
+import SnowDragon from '../models/SnowDragon';
 
 {/* <div className='absolute top-28 left-0 right-0 flex justify-center items-center'>
     Pop-up
@@ -19,13 +20,13 @@ const Home = () => {
 
     const adjustPlaneForScreenSize = () => {
         let screenScale;
-        let screenPosition = [-3, 0, -200]; // viimenen -200
-        let screenRotation = [0.6, -0.4, 0.1];
+        let screenPosition = [200, -100, -200]; // viimenen -200
+        let screenRotation = [0.4, -1.7, 0.5];
 
-        // if (window.innerWidth < 768) 
-        //     screenScale = [0.005, ½0.005, 0.005];
+        if (window.innerWidth < 548) 
+            screenScale = [0.005, 0.005, 0.005];
 
-        // else 
+        else 
         screenScale = [1, 1, 1];
 
         return [screenScale, screenPosition, screenRotation];
@@ -38,8 +39,16 @@ const Home = () => {
         return [screenScale, screenPosition, screenRotation];
     }
 
+    const adjustSnowDragonForScreenSize = () => {
+        let screenScale = [150, 150, 150];;
+        let screenPosition = [200, -100, -550]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
+        let screenRotation = [6.6, 1.8, 7];
+        return [screenScale, screenPosition, screenRotation];
+    }
+
     const [planeScale, planePosition, planeRotation] = adjustPlaneForScreenSize();
     const [smallDragonScale, smallDragonPosition, smallDragonRotation] = adjustSmallDragonForScreenSize();
+    const [snowDragonScale, snowDragonPosition, snowDragonRotation] = adjustSnowDragonForScreenSize();
 
     return (
         <section className='w-full h-screen relative'>
@@ -63,7 +72,7 @@ const Home = () => {
                         <spotLight/>,   a bit lie point light but can used with angle */}
 
                     <Sky
-                        position={[0, 0, 43]}
+                        position={[0, 0, 0]}
                         rotation={[0, 0, 0]}
                         scale={1}
                         isRotating={isRotating}
@@ -72,7 +81,7 @@ const Home = () => {
                     />
                     <PlaneOrange
                         position={planePosition}
-                        rotation={planeRotation}//[0.1, 4.7077, 0]}workBenchScale
+                        rotation={planeRotation}
                         scale={planeScale}
                         isAnimating={true}
                         isClick={isClick}
@@ -81,9 +90,19 @@ const Home = () => {
                     />
                     <SmallDragon
                         position={smallDragonPosition}
-                        rotation={smallDragonRotation}//[0.1, 4.7077, 0]}workBenchScale
+                        rotation={smallDragonRotation}
                         scale={smallDragonScale}
                         isAnimating={true}
+                        setCurrentStage={setCurrentStage}
+                        currentStage={currentStage}
+                    />
+                    <SnowDragon
+                        position={snowDragonPosition}
+                        rotation={snowDragonRotation}
+                        scale={snowDragonScale}
+                        isAnimating={true}
+                        setCurrentStage={setCurrentStage}
+                        currentStage={currentStage}
                     />
                     {/* <Forest
                         position={forestPosition}
