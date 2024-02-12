@@ -7,10 +7,6 @@ import Sky from '../models/Sky';
 import SmallDragon from '../models/SmallDragon';
 import SnowDragon from '../models/SnowDragon';
 
-{/* <div className='absolute top-28 left-0 right-0 flex justify-center items-center'>
-    Pop-up
-</div> */}
-
 const Home = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const [isRotating, setIsRotating] = useState(false);
@@ -21,7 +17,7 @@ const Home = () => {
     const adjustPlaneForScreenSize = () => {
         let screenScale;
         let screenPosition = [200, -100, -200]; // viimenen -200
-        let screenRotation = [0.4, -1.7, 0.5];
+        let screenRotation = [0, -1.5, 0.3];
 
         if (window.innerWidth < 548) 
             screenScale = [0.005, 0.005, 0.005];
@@ -53,7 +49,7 @@ const Home = () => {
     return (
         <section className='w-full h-screen relative'>
 
-            <div className='absolute top-88 left-0 right-0 z-10 flex items-center justify-center'>
+            <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
                 {currentStage && <HomeInfo currentStage={currentStage} />}
             </div>
 
@@ -61,6 +57,7 @@ const Home = () => {
                 className={`w-full h-screen bg-transparent' ${isAnimating ?
                     'cursor-grabbing' : 'cursor-grab'}`}
                 camera={{ near: 0.1, far: 1000 }}
+                onPointerDown={(e) => e.target.requestPointerLock()}
             >
                 <Suspense fallback={<Loader />}>
                     <directionalLight position={[1, 1, 1]} intensity={1} />
@@ -95,37 +92,18 @@ const Home = () => {
                         isAnimating={true}
                         setCurrentStage={setCurrentStage}
                         currentStage={currentStage}
+                        nextPagePath="/About"
                     />
                     <SnowDragon
                         position={snowDragonPosition}
                         rotation={snowDragonRotation}
                         scale={snowDragonScale}
                         isAnimating={true}
+                        setIsAnimating={setIsAnimating}
                         setCurrentStage={setCurrentStage}
                         currentStage={currentStage}
+                        nextPagePath="/Contact"
                     />
-                    {/* <Forest
-                        position={forestPosition}
-                        rotation={[0.1, 4.7077, 0]}
-                        scale={forestScale}
-                        isRotating={isRotating}
-                        setIsRotating={setIsRotating}
-                        setCurrentStage={setCurrentStage}
-                    />
-                    <FoxSimple
-                        scale={foxSimpleScale}
-                        position={foxSimplePosition}
-                        rotation={[0, 80, 0]}
-                        isRotating={isRotating}
-                    />
-                    <Wolf
-                        scale={wolfScale}
-                        position={wolfPosition}
-                        // position={[forestRef.current.position.x + 0, forestRef.current.position.y + 3, forestRef.current.position.z + 0]}
-                        rotation={[0, 80, 0]} */}
-                    {/* 
-                        // wolfRef={wolfRef} // Forward the ref
-                    /> */}
                 </Suspense>
             </Canvas>
         </section>

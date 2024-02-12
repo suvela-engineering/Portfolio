@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
-import snowDragonScene from '../assets/3D/snowDragon.glb'
+import { useEffect, useRef, useState } from 'react'
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
-export default function SnowDragon({ currentStage, setCurrentStage, isAnimating, ...props }) {
+import snowDragonScene from '../assets/3D/snowDragon.glb'
+
+export default function SnowDragon({ nextPagePath, currentStage, setCurrentStage, setIsAnimating, isAnimating, ...props }) {
     const snowDragonRef = useRef();
     const { scene, animations } = useGLTF(snowDragonScene);
     const { actions } = useAnimations(animations, snowDragonRef);
@@ -58,4 +59,4 @@ export default function SnowDragon({ currentStage, setCurrentStage, isAnimating,
             <primitive object={scene} />
         </mesh>
     )
-}
+};

@@ -3,7 +3,7 @@ import smallDragonScene from '../assets/3D/smallDragon.glb'
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
-export default function SmallDragon({ currentStage, setCurrentStage, isAnimating, ...props }) {
+export default function SmallDragon({ nextPagePath, currentStage, setCurrentStage, setIsAnimating, isAnimating, ...props }) {
     const smallDragonRef = useRef();
     const { scene, animations } = useGLTF(smallDragonScene);
     const { actions } = useAnimations(animations, smallDragonRef);
@@ -43,9 +43,10 @@ export default function SmallDragon({ currentStage, setCurrentStage, isAnimating
         }
     })
 
+
     return (
         <mesh {...props} ref={smallDragonRef}>
             <primitive object={scene} />
         </mesh>
     )
-}
+};

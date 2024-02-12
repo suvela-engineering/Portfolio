@@ -42,21 +42,21 @@ const Sky = ({  isRotating, setIsRotating, setCurrentStage, ...props }) => {
     }
   }
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowLeft') {
-      if (!isRotating) setIsRotating(true);
-      skyRef.current.rotation.y += 0.01 * Math.PI;
-    }
-    else if (e.key === 'ArrowRight') {
-      if (!isRotating) setIsRotating(true);
-      skyRef.current.rotation.y -= 0.01 * Math.PI;
-    }
-  }
+  // const handleKeyDown = (e) => {
+  //   if (e.key === 'ArrowLeft') {
+  //     if (!isRotating) setIsRotating(true);
+  //     skyRef.current.rotation.y += 0.01 * Math.PI;
+  //   }
+  //   else if (e.key === 'ArrowRight') {
+  //     if (!isRotating) setIsRotating(true);
+  //     skyRef.current.rotation.y -= 0.01 * Math.PI;
+  //   }
+  // }
 
-  const handleKeyUp = (e) => {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
-      setIsRotating(false);
-  }
+  // const handleKeyUp = (e) => {
+  //   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
+  //     setIsRotating(false);
+  // }
 
   useFrame(() => {
     if (!isRotating) {
@@ -102,8 +102,8 @@ const Sky = ({  isRotating, setIsRotating, setCurrentStage, ...props }) => {
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointermove", handlePointerMove);
     canvas.addEventListener("pointerup", handlePointerUp);
-    document.addEventListener("keyup", handleKeyUp);
-    document.addEventListener("keydown", handleKeyDown);
+    // document.addEventListener("keyup", handleKeyUp);
+    // document.addEventListener("keydown", handleKeyDown);
 
   
     // Cleanup function to remove event listeners when the component unmounts
@@ -111,8 +111,8 @@ const Sky = ({  isRotating, setIsRotating, setCurrentStage, ...props }) => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("pointerup", handlePointerUp);
-      document.removeEventListener("keyup", handleKeyUp);
-      document.removeEventListener("keydown", handleKeyDown);
+      // document.removeEventListener("keyup", handleKeyUp);
+      // document.removeEventListener("keydown", handleKeyDown);
     
     };
   }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
