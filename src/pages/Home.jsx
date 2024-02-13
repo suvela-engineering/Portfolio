@@ -13,31 +13,40 @@ const Home = () => {
     const [currentStage, setCurrentStage] = useState(1);
     const [isClick, setIsClick] = useState(false);
 
+    let minWidth = 640;
 
     const adjustPlaneForScreenSize = () => {
         let screenScale = [2, 2, 2];
         let screenPosition = [100, -100, -200]; // viimenen -200
         let screenRotation = [0, -1.5, 0];
 
-        if (window.innerWidth < 768)
-            screenScale = [1 ,1, 1];
+        if (window.innerWidth < minWidth) {
+            screenScale = [1, 1, 1];
+            screenPosition = [0, -100, -200];
+        }
 
         return [screenScale, screenPosition, screenRotation];
     }
 
     const adjustSmallDragonForScreenSize = () => {
         let screenScale = [2, 2, 2];;
-        let screenPosition = [-400, 50, -200]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
-        let screenRotation = [3.3, 5.5, 2.8];
+        let screenPosition = [-50, 50, -200]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
+        let screenRotation = [3.3, 13.1, 2.8];
+
+        if (window.innerWidth < minWidth) {
+            screenScale = [0.5, 0.5, 0.5];;
+            screenPosition = [100, -100, -200];
+        }
+
         return [screenScale, screenPosition, screenRotation];
     }
 
     const adjustSnowDragonForScreenSize = () => {
         let screenScale = [150, 150, 150];;
-        let screenPosition = [200, -100, -550]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
+        let screenPosition = [200, -100, -550]; // Remember to change X position (first to SnowDragon -> Change direction around axis -> move forward        )
         let screenRotation = [6.6, 1.8, 7];
 
-        if (window.innerWidth < 768)
+        if (window.innerWidth < minWidth)
             screenScale = [75, 75, 75];
 
         return [screenScale, screenPosition, screenRotation];

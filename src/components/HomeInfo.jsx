@@ -31,18 +31,18 @@ const renderContent = {
       </Link>
     </div>
   ),
-  3: (
-    <div className='info-box'>
-      <p className='font-medium text-center sm:text-xl'>
-        Led multiple projects to success over the years. <br /> Curious about the impact?
-      </p>
+  // 3: (
+  //   <div className='info-box'>
+  //     <p className='font-medium text-center sm:text-xl'>
+  //       In the past I've also worked in Energy, Maintenance and Metal industries <br /> Curious about the impact?
+  //     </p>
 
-      <Link to='/projects' className='neo-brutalism-white neo-btn'>
-        Visit my portfolio
-        <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-      </Link>
-    </div>
-  ),
+  //     <Link to='/projects' className='neo-brutalism-white neo-btn'>
+  //       Visit my portfolio
+  //       <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
+  //     </Link>
+  //   </div>
+  // ),
   4: (
     <div className='info-box'>
       <p className='font-medium sm:text-xl text-center'>

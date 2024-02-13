@@ -67,19 +67,24 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
     const normalizedRotation =
       ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
+
     // Set the current stage based on the plane orientation
     switch (true) {
       // case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-      case normalizedRotation > 4.75 && normalizedRotation <= 5.5:
+      // case normalizedRotation > 4.75 && normalizedRotation <= 5.5:
+      case normalizedRotation > 4 && normalizedRotation <= 5.5:
         setCurrentStage(1);
         break;
-        case normalizedRotation >= 3.25 && normalizedRotation < 4:
-        setCurrentStage(3);
-        break;
-      case normalizedRotation >= 1.25 && normalizedRotation <= 2.0:
+      // Left the case 3 for Projects, delete if not needed
+      // case normalizedRotation >= 3.25 && normalizedRotation < 4:
+      // setCurrentStage(3); 
+      // break;
+      // case normalizedRotation >= 1.25 && normalizedRotation <= 2.0:
+      case normalizedRotation >= 2 && normalizedRotation <= 3.5:
         setCurrentStage(2);
         break;
-      case normalizedRotation >= 0 && normalizedRotation < 0.75:
+      // case normalizedRotation >= 0 && normalizedRotation < 0.75:
+      case normalizedRotation >= 0 && normalizedRotation < 1.5:
         setCurrentStage(4);
         break;
       default:
