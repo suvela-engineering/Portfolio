@@ -15,8 +15,6 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
   // for rotation
   const { gl, viewport } = useThree();
   const lastX = useRef(0);
-  const rotationSpeed = useRef(0);
-  const dampingFactor = 0.95;
 
   const handlePointerDown = (e) => {
     e.stopPropagation();

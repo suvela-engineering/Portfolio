@@ -15,15 +15,12 @@ const Home = () => {
 
 
     const adjustPlaneForScreenSize = () => {
-        let screenScale;
-        let screenPosition = [200, -100, -200]; // viimenen -200
-        let screenRotation = [0, -1.5, 0.3];
+        let screenScale = [2, 2, 2];
+        let screenPosition = [100, -100, -200]; // viimenen -200
+        let screenRotation = [0, -1.5, 0];
 
-        if (window.innerWidth < 548) 
-            screenScale = [0.005, 0.005, 0.005];
-
-        else 
-        screenScale = [1, 1, 1];
+        if (window.innerWidth < 768)
+            screenScale = [1 ,1, 1];
 
         return [screenScale, screenPosition, screenRotation];
     }
@@ -39,6 +36,10 @@ const Home = () => {
         let screenScale = [150, 150, 150];;
         let screenPosition = [200, -100, -550]; // Remember to change X position (first to SmallDragon -> Change direction around axis -> move forward        )
         let screenRotation = [6.6, 1.8, 7];
+
+        if (window.innerWidth < 768)
+            screenScale = [75, 75, 75];
+
         return [screenScale, screenPosition, screenRotation];
     }
 
@@ -103,6 +104,8 @@ const Home = () => {
                         setCurrentStage={setCurrentStage}
                         currentStage={currentStage}
                         nextPagePath="/Contact"
+                        isRotating={isRotating}
+                        setIsRotating={setIsRotating}
                     />
                 </Suspense>
             </Canvas>
