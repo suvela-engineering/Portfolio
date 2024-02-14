@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
 import snowDragonScene from '../assets/3D/snowDragon.glb'
 
-export default function SnowDragon({ nextPagePath, currentStage, setCurrentStage, setIsAnimating, isAnimating, ...props }) {
+export default function SnowDragon({  currentStage, setCurrentStage, isAnimating, ...props }) {
     const snowDragonRef = useRef();
     const { scene, animations } = useGLTF(snowDragonScene);
     const { actions } = useAnimations(animations, snowDragonRef);

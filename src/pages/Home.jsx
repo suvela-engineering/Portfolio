@@ -100,21 +100,14 @@ const Home = () => {
                         rotation={smallDragonRotation}
                         scale={smallDragonScale}
                         isAnimating={true}
-                        setCurrentStage={setCurrentStage}
-                        currentStage={currentStage}
-                        nextPagePath="/About"
                     />
                     <SnowDragon
                         position={snowDragonPosition}
                         rotation={snowDragonRotation}
                         scale={snowDragonScale}
                         isAnimating={true}
-                        setIsAnimating={setIsAnimating}
                         setCurrentStage={setCurrentStage}
                         currentStage={currentStage}
-                        nextPagePath="/Contact"
-                        isRotating={isRotating}
-                        setIsRotating={setIsRotating}
                     />
                 </Suspense>
             </Canvas>

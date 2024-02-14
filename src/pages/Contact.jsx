@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import emailjs from '@emailjs/browser';
 import useAlert from '../hooks/useAlert';
 import Alert from '../components/Alert';
 
 const Contact = () => {
-  const formRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
   const { alert, showAlert, hideAlert } = useAlert();
@@ -45,13 +44,12 @@ const Contact = () => {
   const handleBlur = () => { };
 
   return (
-    <section className='relative flex lg:flex-row flex-col max-container'>
+    <section className='relative flex lg:flex-row flex-col max-container h-[100vh]'>
       <div className='flex-1 min-w-[50%] flex flex-col'>
 
-      {alert.show && <Alert {...alert} />}
+        {alert.show && <Alert {...alert} />}
 
         <h1 className='head-text'>Get in Touch</h1>
-
 
         <form className='w-full flex flex-col gap-7 mt-14'
           onSubmit={handleSubmit}>
@@ -106,9 +104,8 @@ const Contact = () => {
           </button>
         </form>
       </div>
-
-
     </section>
+
   )
 }
 
