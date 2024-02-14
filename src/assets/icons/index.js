@@ -21,11 +21,13 @@ import mui from './mui.svg'
 import nextjs from './nextjs.svg'
 import nodejs from './nodejs.svg'
 import php from './php.svg'
+import pinja from './pinja.svg'
 import pricewise from './pricewise.svg'
 import react from './react.svg'
 import redux from './redux.svg'
 import sass from './sass.svg'
 import snapgram from './snapgram.svg'
+import solteq from './solteq.svg'
 import soundoff from './soundoff.png'
 import soundon from './soundon.png'
 import summiz from './summiz.svg'
@@ -60,10 +62,12 @@ export {
     nextjs,
     nodejs,
     php,
+    pinja,
     pricewise,
     react,
     redux,
     sass,
+    solteq,
     snapgram,
     soundoff,
     soundon,
