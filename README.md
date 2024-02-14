@@ -4,6 +4,7 @@
 2. sudo npm create vite@latest ./
 3. download model e.g. https://sketchfab.com/
 4. Drag it here https://gltf.pmnd.rs/ and copy to clipboard -> paste code as new file to models
+5. Host e.g. in Netlify
 
 
 # React + Vite
