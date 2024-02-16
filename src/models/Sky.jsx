@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, Suspense } from "react";
 import { useGLTF } from "@react-three/drei"; //useAnimations
 import { useThree, useFrame } from "@react-three/fiber";
+import { a } from "@react-spring/three";
 
 import SkyScene from '../assets/3D/sky.glb';
 
@@ -8,7 +9,7 @@ const Sky = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const skyRef = useRef();
 
   const { gl, viewport } = useThree();
-  const { scene, } = useGLTF(SkyScene);
+  const { nodes, materials } = useGLTF(SkyScene);
   const lastX = useRef(0);
 
   const handlePointerDown = (e) => {
@@ -57,9 +58,14 @@ const Sky = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   return (
-    <mesh ref={skyRef} {...props}>
-      <primitive object={scene} />
-    </mesh>
+    <a.group ref={skyRef} {...props} dispose={null} scale={0.01}>
+      <mesh
+        geometry={nodes.Sphere__0.geometry}
+        material={materials["Scene_-_Root"]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={50000}
+      />
+    </a.group>
   );
 }
 

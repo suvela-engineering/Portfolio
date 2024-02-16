@@ -2,6 +2,7 @@ import { useRef, useEffect, useMemo } from 'react'
 import PlaneScene from '../assets/3D/plane.glb';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
+import { PlaneGeo } from '../models-smaller/PlaneGeo';
 
 export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAnimating, ...props }) {
   const planeRef = useRef();
@@ -70,8 +71,6 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
 
     // Set the current stage based on the plane orientation
     switch (true) {
-      // case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-      // case normalizedRotation > 4.75 && normalizedRotation <= 5.5:
       case normalizedRotation > 4 && normalizedRotation <= 5.5:
         setCurrentStage(1);
         break;
@@ -79,11 +78,9 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
       // case normalizedRotation >= 3.25 && normalizedRotation < 4:
       // setCurrentStage(3); 
       // break;
-      // case normalizedRotation >= 1.25 && normalizedRotation <= 2.0:
       case normalizedRotation >= 2 && normalizedRotation <= 3.5:
         setCurrentStage(2);
         break;
-      // case normalizedRotation >= 0 && normalizedRotation < 0.75:
       case normalizedRotation >= 0 && normalizedRotation < 1.5:
         setCurrentStage(4);
         break;
@@ -125,6 +122,6 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
       {/* use the primitive element when you want to directly embed a complex 3D
       model or scene */}
       <primitive object={scene} />
-    </mesh>
+    </mesh> 
   );
 }
