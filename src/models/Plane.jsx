@@ -89,24 +89,24 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
     }
   });
 
-  useEffect(() => {
-    const canvas = gl.domElement;
+  // useEffect(() => {
+  //   const canvas = gl.domElement;
 
-    // Add event listeners to the appropriate target
-    canvas.addEventListener("pointerdown", handlePointerDown);
-    canvas.addEventListener("pointermove", handlePointerMove);
-    canvas.addEventListener("pointerup", handlePointerUp);
-    document.addEventListener("keydown", handleKeyDown);
+  //   // Add event listeners to the appropriate target
+  //   canvas.addEventListener("pointerdown", handlePointerDown);
+  //   canvas.addEventListener("pointermove", handlePointerMove);
+  //   canvas.addEventListener("pointerup", handlePointerUp);
+  //   // document.addEventListener("keydown", handleKeyDown);
 
 
-    // Cleanup function to remove event listeners when the component unmounts
-    return () => {
-      canvas.removeEventListener("pointerdown", handlePointerDown);
-      canvas.removeEventListener("pointermove", handlePointerMove);
-      canvas.removeEventListener("pointerup", handlePointerUp);
-      document.removeEventListener("keydown", handleKeyDown)
-    };
-  }, [gl, handlePointerDown, handlePointerMove, handlePointerUp, handleKeyDown]);
+  //   // Cleanup function to remove event listeners when the component unmounts
+  //   return () => {
+  //     canvas.removeEventListener("pointerdown", handlePointerDown);
+  //     canvas.removeEventListener("pointermove", handlePointerMove);
+  //     canvas.removeEventListener("pointerup", handlePointerUp);
+  //     // document.removeEventListener("keydown", handleKeyDown)
+  //   };
+  // }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   useEffect(() => {
     if (isAnimating) {
