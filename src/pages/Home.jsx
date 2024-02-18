@@ -12,6 +12,7 @@ const Home = () => {
     const [isRotating, setIsRotating] = useState(false);
     const [currentStage, setCurrentStage] = useState(1);
     const [isClick, setIsClick] = useState(false);
+    const [touchStartX, setTouchStartX] = useState(null); // Track initial touch position
 
     let minWidth = 640;
 
@@ -56,21 +57,43 @@ const Home = () => {
     const [smallDragonScale, smallDragonPosition, smallDragonRotation] = adjustSmallDragonForScreenSize();
     const [snowDragonScale, snowDragonPosition, snowDragonRotation] = adjustSnowDragonForScreenSize();
 
+    const handleTouchStart = (event) => {
+        if (event.pointerType === 'touch') {
+            setTouchStartX(event.clientX); // Store initial touch X position
+        }
+    };
+
+    const handleTouchMove = (event) => {
+        if (event.pointerType === 'touch' && touchStartX !== null) {
+            const deltaX = event.clientX - touchStartX; // Calculate touch delta
+
+            // Update rotation based on deltaX, considering sensitivity and boundaries
+            const rotationStep = deltaX / 100; // Adjust sensitivity as needed
+            const newRotation = [planeRotation[0], planeRotation[1] + rotationStep, planeRotation[2]];
+            // Clamp rotation within desired range (e.g., -180 to 180 degrees)
+            planeRotation[1] = Math.max(-Math.PI, Math.min(Math.PI, newRotation[1]));
+
+            setTouchStartX(event.clientX); // Update touch start for next move
+        }
+    };
+
+    const handleTouchEnd = () => {
+        setTouchStartX(null); // Reset touch tracking on touch end
+    };
+
     return (
-        <section className='w-full h-screen relative'>
+        <section className="w-full h-screen relative">
+            {/* ... (other elements remain the same) */}
 
-            <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-                {currentStage && <HomeInfo currentStage={currentStage} />}
-            </div>
-
-            <Canvas 
-                className={`w-full h-screen bg-transparent' ${isAnimating ?
-                    'cursor-grabbing' : 'cursor-grab'}`}
+            <Canvas
+                className={`w-full h-screen bg-transparent`}
                 camera={{ near: 0.1, far: 1000 }}
-                onPointerDown={(e) => e.target.requestPointerLock()}
-                style={{overflow: 'auto' }}
+                onPointerDown={handleTouchStart}
+                onPointerMove={handleTouchMove}
+                onPointerUp={handleTouchEnd}
+                style={{ overflow: 'auto' }}
             >
-                <Suspense fallback={<Loader  />}>
+                <Suspense fallback={<Loader />}>
                     <directionalLight position={[1, 1, 1]} intensity={1} />
                     <ambientLight intensity={1} />
                     <hemisphereLight skyColor="#87d3ff" groundColor="#000000"
