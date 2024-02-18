@@ -84,7 +84,7 @@ const Home = () => {
     return (
         <section className="w-full h-screen relative">
             {/* ... (other elements remain the same) */}
-
+            {/* 
             <Canvas
                 className={`w-full h-screen bg-transparent`}
                 camera={{ near: 0.1, far: 1000 }}
@@ -92,6 +92,13 @@ const Home = () => {
                 onPointerMove={handleTouchMove}
                 onPointerUp={handleTouchEnd}
                 style={{ overflow: 'auto' }}
+            > */}
+            <Canvas
+                className={`w-full h-screen bg-transparent' ${isAnimating ?
+                    'cursor-grabbing' : 'cursor-grab'}`}
+                camera={{ near: 0.1, far: 1000 }}
+                // onPointerDown={(e) => e.target.requestPointerLock()}
+                // style={{ overflow: 'auto' }}
             >
                 <Suspense fallback={<Loader />}>
                     <directionalLight position={[1, 1, 1]} intensity={1} />
