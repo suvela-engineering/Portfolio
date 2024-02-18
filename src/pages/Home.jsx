@@ -68,7 +68,7 @@ const Home = () => {
             const deltaX = event.clientX - touchStartX; // Calculate touch delta
 
             // Update rotation based on deltaX, considering sensitivity and boundaries
-            const rotationStep = deltaX / 100; // Adjust sensitivity as needed
+            const rotationStep = deltaX / 10; // Adjust sensitivity as needed
             const newRotation = [planeRotation[0], planeRotation[1] + rotationStep, planeRotation[2]];
             // Clamp rotation within desired range (e.g., -180 to 180 degrees)
             planeRotation[1] = Math.max(-Math.PI, Math.min(Math.PI, newRotation[1]));
@@ -84,7 +84,7 @@ const Home = () => {
     return (
         <section className="w-full h-screen relative">
             {/* ... (other elements remain the same) */}
-            {/* 
+            
             <Canvas
                 className={`w-full h-screen bg-transparent`}
                 camera={{ near: 0.1, far: 1000 }}
@@ -92,14 +92,14 @@ const Home = () => {
                 onPointerMove={handleTouchMove}
                 onPointerUp={handleTouchEnd}
                 style={{ overflow: 'auto' }}
-            > */}
-            <Canvas
+            > 
+            {/* <Canvas
                 className={`w-full h-screen bg-transparent' ${isAnimating ?
                     'cursor-grabbing' : 'cursor-grab'}`}
                 camera={{ near: 0.1, far: 1000 }}
                 // onPointerDown={(e) => e.target.requestPointerLock()}
                 // style={{ overflow: 'auto' }}
-            >
+            > */}
                 <Suspense fallback={<Loader />}>
                     <directionalLight position={[1, 1, 1]} intensity={1} />
                     <ambientLight intensity={1} />
