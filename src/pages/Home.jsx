@@ -70,7 +70,7 @@ const Home = () => {
                 onPointerDown={(e) => e.target.requestPointerLock()}
                 style={{overflow: 'auto' }}
             >
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={<Loader  />}>
                     <directionalLight position={[1, 1, 1]} intensity={1} />
                     <ambientLight intensity={1} />
                     <hemisphereLight skyColor="#87d3ff" groundColor="#000000"

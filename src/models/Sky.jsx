@@ -40,22 +40,22 @@ const Sky = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     }
   }
 
-  // useEffect(() => {
-  //   const canvas = gl.domElement;
+  useEffect(() => {
+    const canvas = gl.domElement;
 
-  //   // Add event listeners to the appropriate target
-  //   canvas.addEventListener("pointerdown", handlePointerDown);
-  //   canvas.addEventListener("pointermove", handlePointerMove);
-  //   canvas.addEventListener("pointerup", handlePointerUp);
+    // Add event listeners to the appropriate target
+    canvas.addEventListener("pointerdown", handlePointerDown);
+    canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerup", handlePointerUp);
 
-  //   // Cleanup function to remove event listeners when the component unmounts
-  //   return () => {
-  //     canvas.removeEventListener("pointerdown", handlePointerDown);
-  //     canvas.removeEventListener("pointermove", handlePointerMove);
-  //     canvas.removeEventListener("pointerup", handlePointerUp);
+    // Cleanup function to remove event listeners when the component unmounts
+    return () => {
+      canvas.removeEventListener("pointerdown", handlePointerDown);
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerup", handlePointerUp);
 
-  //   };
-  // }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
+    };
+  }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   return (
     <a.group ref={skyRef} {...props} dispose={null} scale={0.01}>
