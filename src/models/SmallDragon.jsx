@@ -9,11 +9,8 @@ export default function SmallDragon({ isAnimating, ...props }) {
     const { actions } = useAnimations(animations, smallDragonRef);
 
     useEffect(() => {
-        if (isAnimating) {
+        if (isAnimating)
             actions["Fly 2"].play();
-        } else {
-            actions["Fly 2"].stop();
-        }
     }, [actions, isAnimating]);
 
     useFrame(({ clock, camera }) => {

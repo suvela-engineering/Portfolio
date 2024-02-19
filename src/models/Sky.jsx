@@ -5,7 +5,7 @@ import { a } from "@react-spring/three";
 
 import SkyScene from '../assets/3D/sky.glb';
 
-const Sky = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
+const Sky = ({ isRotating, setIsRotating, ...props }) => {
   const skyRef = useRef();
 
   const { gl, viewport } = useThree();

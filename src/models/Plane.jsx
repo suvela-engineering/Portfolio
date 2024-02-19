@@ -1,8 +1,7 @@
-import { useRef, useEffect, useMemo } from 'react'
+import { useRef, useEffect } from 'react'
 import PlaneScene from '../assets/3D/plane.glb';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { PlaneGeo } from '../models-smaller/PlaneGeo';
 import { a } from "@react-spring/three";
 
 export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAnimating, ...props }) {
@@ -10,7 +9,7 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
     // Load the 3D model and its animations
     const { nodes, materials, animations } = useGLTF(PlaneScene);
     // Get animation actions associated with the plane
-    const { actions } = useAnimations(animations, planeRef);
+    const { actions } = useAnimations(animations, planeRef);    
 
     const speed = 2; // Adjust this value to control movement speed
 
@@ -35,7 +34,7 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
             const delta = (clientX - lastX.current) / viewport.width;
-            planeRef.current.rotation.y += delta * 0.01 * Math.PI;
+            planeRef.current.rotation.y += delta * 0.02 * Math.PI;
             lastX.current = clientX;
         }
     }
@@ -43,25 +42,8 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
     const handlePointerUp = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        setIsClick(false);
+        setIsClick();
     }
-
-
-    // const handleKeyDown = (e) => {
-    //   if (e.key === 'ArrowUp') {
-    //     planeRef.current.position.z -= speed;
-    //   }
-    //   else if (e.key === 'ArrowDown') {
-    //     planeRef.current.position.z += speed;
-    //   }
-    //   if (e.key === 'ArrowLeft') {
-    //     planeRef.current.rotation.x -= speed; // Move left in the x-axis
-    //   }
-    //   else if (e.key === 'ArrowRight') {
-    //     planeRef.current.rotation.x += speed; // Move right in the x-axis
-    //   }
-    // }
-
 
     useFrame(() => {
         const rotation = planeRef.current.rotation.y;
@@ -97,26 +79,19 @@ export default function PlaneOrange({ setCurrentStage, setIsClick, isClick, isAn
         canvas.addEventListener("pointerdown", handlePointerDown);
         canvas.addEventListener("pointermove", handlePointerMove);
         canvas.addEventListener("pointerup", handlePointerUp);
-        // document.addEventListener("keydown", handleKeyDown);
-
 
         // Cleanup function to remove event listeners when the component unmounts
         return () => {
             canvas.removeEventListener("pointerdown", handlePointerDown);
             canvas.removeEventListener("pointermove", handlePointerMove);
             canvas.removeEventListener("pointerup", handlePointerUp);
-            // document.removeEventListener("keydown", handleKeyDown)
         };
     }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
     useEffect(() => {
-        if (isAnimating) {
+        if (isAnimating)
             actions["Scene"].play();
-        } else {
-            actions["Scene"].stop();
-        }
     }, [actions, isAnimating]);
-
 
     return (
         <a.group ref={planeRef} {...props} dispose={null}>

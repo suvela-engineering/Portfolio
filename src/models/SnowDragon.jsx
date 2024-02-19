@@ -5,28 +5,15 @@ import { a } from "@react-spring/three";
 
 import snowDragonScene from '../assets/3D/snowDragon.glb'
 
-export default function SnowDragon({ currentStage, setCurrentStage, isAnimating, ...props }) {
+export default function SnowDragon({ currentStage, isAnimating, ...props }) {
     const snowDragonRef = useRef();
     const { nodes, materials, animations } = useGLTF(snowDragonScene);
     const { actions } = useAnimations(animations, snowDragonRef);
 
     useEffect(() => {
-        if (currentStage === 10) {
-            actions["skill01"].play();
-
-            // Calculate animation duration (assuming you know it)
-            const animationDuration = 2100; // Replace with actual duration
-
-            setTimeout(() => {
-                // Stop animation after its duration
-                actions["skill01"].stop();
-                setCurrentStage(null);
-            }, animationDuration);
-        }
-        else {
+        if (isAnimating)
             actions["skill02"].play();
-        }
-    }, [actions, currentStage, setCurrentStage, currentStage]);
+    }, [actions, isAnimating]);
 
     useFrame(({ clock, camera }) => {
         // Update the Y position simulate the flight moving in a sing wave, yep!
