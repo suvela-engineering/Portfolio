@@ -112,7 +112,7 @@ export const skills = [
 
 export const experiences = [
     {
-        title: "Software Developer",
+        title: "Junior Software Developer",
         company_name: "Solteq",
         icon: solteq,
         iconBg: "#fbc3bc",
